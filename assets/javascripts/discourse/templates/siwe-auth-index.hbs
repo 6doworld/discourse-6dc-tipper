@@ -1,0 +1,25 @@
+<form id="siwe-sign" method="POST" action="/auth/siwe/callback" style="display: none;">
+  <textarea id="eth_account" name="eth_account"></textarea>
+  <textarea id="eth_message" name="eth_message"></textarea>
+  <textarea id="eth_signature" name="eth_signature"></textarea>
+  <textarea id="eth_avatar" name="eth_avatar"></textarea>
+</form>
+<div class="eth_provider_container">
+  <div class="eth_provider_auth_button">
+    {{#if (eq this.isAuthLoading 1)}}
+      <button class="btn-default btn btn-icon-text" type="button" disabled>
+        <div class="spinner small"></div>&nbsp;&nbsp;{{ i18n "eth_providers.buttons.start" }}
+      </button>
+    {{else if (eq this.isAuthLoading 2)}}
+      <button class="btn-default btn btn-icon-text" type="button" disabled>
+        <div class="spinner small"></div>&nbsp;&nbsp;Redirecting...
+      </button>
+    {{else}}
+      <button class="btn-primary" type="button" {{ action "initAuth" }}>
+        <span class="d-button-label">
+          {{ i18n "eth_providers.buttons.start" }}
+        </span>
+      </button>
+    {{/if}}
+  </div>
+</div>

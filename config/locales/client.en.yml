@@ -1,0 +1,56 @@
+en:
+  site_settings:
+    discourse_6dc_tipper: "Either the plugin is enabled or not"
+    siwe_infura_id: "Infura ID to be used for WalletConnect"
+    siwe_json_rpc: "JSON RPC configuration to be used for WalletConnect. If set, will supersede Infura ID for WalletConnect"
+    siwe_statement: "Statement that will be displayed in the message"
+    
+    network_chain_id: "Network Chain ID that the plugin will be locked to for tipping/wallet connection"
+    currency: "Please enter a currency that you would like to display for the end-user"
+
+    minimum_tip: "The minimum amount a user can tip"
+    maximum_tip: "The maximum amount a user can tip"
+    max_tips_per_day: "The maximum amount a user can tip daily"
+    max_tips_per_hour: "The maximum amount a user can tip per hour"
+    max_tips_per_minute: "The maximum amount of tips a user can tip per minute"
+    erc_20_contract: "The contract address that belongs to the ERC-20 Token"
+
+  js:
+    login:
+      siwe:
+        name: "6DC Wallet"
+        title: "with Ethereum"
+    eth_providers:
+      title: "Sign-in with Ethereum"
+      buttons:
+        start: "Sign-in with Ethereum"
+
+    tip_button_title: Tip
+    tip_icon_alt: tip some crypto
+
+    modal:
+      title: Send some crypto
+      description: You are about to send some crypto to <u><strong>%{user}</strong></u>, make sure you know what you are doing since this action cannot be reverted
+      
+      amount_sending: You are sending <strong>%{amount}</strong> %{currency}
+      hide_custom_amount: Hide
+      custom_amount: Enter a custom amount
+
+      send_button: Send
+      close_button: Close
+
+    error:
+      user_tip: You cannot tip yourself
+      deny_access: You have denied authorization to your wallet, press 'OK' to redirect
+      invalid_chain_id: Please switch to the Chain ID corresponding to %{chain} and press the button or refresh
+      invalid_wallet: Please switch to a valid wallet
+      user_no_wallet: You do not have a wallet connected, please connect a wallet first
+      target_no_wallet: This user does not have a wallet connected, we have alerted them that you have tried to tip them
+      min_tip: Please enter or choose a value greater than or equal to %{min}
+      max_tip: Please choose a value lower than or equal to %{max}
+      limit_reached: You are only allowed to tip %{max} time(s) per %{type}
+      wrong_account: Please change wallet to %{wallet}
+      address_not_found: No address was found
+
+    success:
+      tip: You have successfully sent %{amount} %{currency} to %{name}

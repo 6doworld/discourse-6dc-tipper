@@ -1,0 +1,60 @@
+<DModalBody @class="tip-modal" @title="modal.title">
+  <div class="input-group">
+    <label>
+       {{ html-safe (i18n "modal.description" user=this.user.username) }}
+    </label>
+
+    <hr>
+
+    <label>
+      {{ html-safe (i18n "modal.amount_sending" amount=(if this.isNotValidNumber '0' this.tipValue) currency=this.siteSettings.currency) }}
+    </label>
+    
+    <hr>
+
+    <div class="tip-options">
+      {{#each this.sampleValues as |v|}}
+        <button class="btn-primary btn no-text btn-icon" type="button" {{ action "updatePaymentValue" v }}>
+        {{ v }} {{ this.siteSettings.currency }}
+        </button>
+      {{/each}}
+
+      <button class="btn-default btn" type="button" {{ action "toggleMoreOptions" }}>
+        {{ if this.showMoreOptions (i18n "modal.hide_custom_amount") "..." }}
+      </button>
+    </div>
+
+    {{#if this.showMoreOptions}}
+      <br />
+      <label>
+        {{ i18n "modal.custom_amount" }}:
+      </label>
+
+      <input name="tip-amount" id="tip-amount" class="ember-text-field ember-view" type="text" autocomplete="off" oninput={{ action "onInputChange" }}>
+    {{/if}}
+  </div>
+</DModalBody>
+
+<div class="modal-footer">
+  {{#if this.isPaymentLoading}}
+      <button class="btn-default btn btn-icon-text" type="button">
+        <div class="spinner small"></div>
+      </button>
+  {{else}}
+    <button class="btn-primary btn btn-icon-text" type="button" {{ action "tipUser" }}>
+      <svg class="fa d-icon d-hand-holding-usd svg-icon svg-string" xmlns="http://www.w3.org/2000/svg">
+      <use href="#hand-holding-usd"></use></svg>
+      <span class="d-button-label">
+        {{ i18n "modal.send_button" }}
+      </span>
+    </button>
+  {{/if}}
+
+  <button class="btn-default btn btn-icon-text" type="button" {{ action (route-action "closeModal") }}>
+    <svg class="fa d-icon d-icon-times svg-icon svg-string" xmlns="http://www.w3.org/2000/svg">
+    <use href="#times"></use></svg>
+    <span class="d-button-label">
+      {{ i18n "modal.close_button" }}
+    </span>
+  </button>
+</div>
