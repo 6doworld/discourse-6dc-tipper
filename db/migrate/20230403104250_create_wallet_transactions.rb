@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class CreateWalletTransactionsTables < ActiveRecord::Migration[7.0]
-    def up
+class CreateWalletTransactions < ActiveRecord::Migration[7.0]
+    def change                
         create_table :wallet_transactions do |t|
             t.integer :user_id, null: false
             t.integer :target_user_id, null: false
@@ -10,11 +10,8 @@ class CreateWalletTransactionsTables < ActiveRecord::Migration[7.0]
             t.integer :status, default: 1
             t.timestamps
         end
-
+        
+        add_index :wallet_transactions, :user_id
         add_index :wallet_transactions, :target_user_id
-    end
-
-    def down 
-        drop_table :wallet_transactions
     end
 end
