@@ -17,10 +17,14 @@ export default {
             });
                 
             api.addPostMenuButton('tip', function (attrs) {
-                if (
-                    attrs.user.id === api.getCurrentUser().id || 
-                    attrs.user.id === -1
-                ) return {}
+                if (attrs.user.id) {
+                    if (
+                        attrs.user.id === api.getCurrentUser().id || 
+                        attrs.user.id === -1
+                    ) return {}
+                } else {
+                    return {}
+                }
 
                 return {
                     data: {
