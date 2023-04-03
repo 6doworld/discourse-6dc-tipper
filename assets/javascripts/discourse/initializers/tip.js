@@ -17,7 +17,7 @@ export default {
             });
                 
             api.addPostMenuButton('tip', function (attrs) {
-                if (attrs.user.id) {
+                if (api.getCurrentUser()) {
                     if (
                         attrs.user.id === api.getCurrentUser().id || 
                         attrs.user.id === -1

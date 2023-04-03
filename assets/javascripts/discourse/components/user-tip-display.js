@@ -17,14 +17,23 @@ export default Component.extend({
     },
 
     show(user) {
-        if (
-            user.id === -1 || 
-            user.id === this.currentUser.id
-        ) this.set("shouldDisplay", false);
+        if (this.currentUser) {
+            if (
+                user.id === -1 || 
+                user.id === this.currentUser.id
+            ) this.set("shouldDisplay", false);
+        } else {
+            this.set("shouldDisplay", false);
+        }
     },
 
     getTargetUser() {
         let user;
+
+        if (!!!this.currentUser) return {
+            id: -1,
+            username: "system"
+        }
 
         switch (this.location) {
             case "profile-view":
