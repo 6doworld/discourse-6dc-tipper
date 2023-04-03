@@ -2,6 +2,7 @@ en:
   error:
     enable_wallet: The user %{username} has tried to send you a tip, however you do not have a wallet connected. Please head over to [Preferences](%{url}) and connect a 6DC Wallet
     user_tip: You cannot tip yourself
+    invalid_value: Must be a valid float or number
 
   success:
     sent_tip: The user %{username} has sent you a tip of %{amount}

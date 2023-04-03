@@ -24,6 +24,15 @@ export default Controller.extend({
   },
 
   async initAuth() {
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+    });
+
     const env = withPluginApi("0.11.7", (api) => {
       const siteSettings = api.container.lookup("site-settings:main");
 
@@ -37,23 +46,36 @@ export default Controller.extend({
         JSON_RPC,
       }
     });
-    let provider = Web3Modal.create();
 
+    if (deferredPrompt)
+
+    deferredPrompt.prompt();
+    
+    let provider = Web3Modal.create();
     await provider.providerInit(env);
 
     try {
+      
       const [account, message, signature, avatar] = await provider.runSigningProcess(this.siteSettings.network_chain_id);
       this.set("isAuthLoading", 2);
       this.verifySignature(account, message, signature, avatar);
+
     } catch (e) {
+
       this.set("isAuthLoading", 0);
+
       if (e.message === "INVALID_CHAIN_ID") {
+
         this.dialog.alert(I18n.t("error.invalid_chain_id", {
           chain: this.siteSettings.network_chain_id
         }));
+
       } else if (e.message === "ADDRESS_NOT_FOUND") {
+
         this.dialog.alert(I18n.t("error.invalid_wallet"));
+
       } else {
+
         this.dialog.alert({
           message: I18n.t("error.deny_access"),
           didConfirm: () => this.router.transitionTo("preferences.account", this.currentUser),

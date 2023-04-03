@@ -3,6 +3,7 @@ import Controller from "@ember/controller";
 import EmberObject, { action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
+import { htmlSafe } from "@ember/template";
 
 import Web3Modal from "../lib/web3modal";
 import Web3Utils from "../lib/web3utils";
@@ -28,6 +29,10 @@ export default Controller.extend(ModalFunctionality, {
             this.siteSettings.maximum_tip <= 0 ? 
                 0.1 : this.siteSettings.maximum_tip
 
+        this.siteSettings.minimum_tip = 
+            this.siteSettings.minimum_tip <= 0 ? 
+                0.001 : this.siteSettings.minimum_tip
+                
         this.sampleValues = this.utils.intermediateValues(
             this.siteSettings.minimum_tip,
             this.siteSettings.maximum_tip,
@@ -188,11 +193,12 @@ export default Controller.extend(ModalFunctionality, {
                     startConfetti();
 
                     this.dialog.alert({
-                        message: I18n.t("success.tip", {
+                        message: htmlSafe(I18n.t("success.tip", {
                             amount: this.get("tipValue"),
                             currency: this.siteSettings.currency,
-                            name: this.user.username
-                        }),
+                            name: this.user.username,
+                            wallet: target_has_wallet
+                        })),
                         didConfirm: () => { this.send("closeModal"); stopConfetti(); },
                         didCancel: () => { this.send("closeModal"); stopConfetti(); },
                     });

@@ -1,11 +1,8 @@
 {{#if this.shouldDisplay}}
-<button class={{ this.buttonClass }} type="button" {{ action "toggleModal" }}>
-    <svg class="fa d-icon d-icon-hand-holding-usd svg-icon svg-string" xmlns="http://www.w3.org/2000/svg">
-        <use href="#hand-holding-usd"></use>
-    </svg>
-
-   <span class="d-button-label">
-    {{ i18n "tip_button_title" }}
-   </span>
-</button>
+<DButton
+    @action={{action "toggleModal"}}
+    @class={{this.buttonClass}}
+    @label="tip_button_title"
+    @icon="hand-holding-usd"
+/>
 {{/if}}

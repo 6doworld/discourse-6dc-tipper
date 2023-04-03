@@ -2,14 +2,14 @@
 
 module Discourse6dcTipper
   class TransactionController < ::ApplicationController
+    requires_login
+
     def index
     end
 
     def create_transaction
-        ensure_logged_in
-
-        target_uid = params[:target_id].to_i
-        user = User.find_by(id: target_uid)
+        target_id = params[:target_id].to_i
+        user = User.find_by(id: target_id)
 
         if (user[:id] == current_user[:id])
             return render json: { 
@@ -23,7 +23,7 @@ module Discourse6dcTipper
 
         created_transaction = WalletTransactions.create(
             user_id: current_user[:id], 
-            target_user_id: target_uid, 
+            target_user_id: target_id, 
             tx_hash: transaction_hash, 
             tx_amount: amount
         )
@@ -35,11 +35,13 @@ module Discourse6dcTipper
             subtype: TopicSubtype.system_message,
             title: I18n.t("success.sent_tip", {
                 username: current_user[:username],
-                amount: amount.to_s
+                amount: amount.to_s,
+                currency: SiteSetting.currency
             }),
             raw: I18n.t("success.sent_tip", {
                 username: current_user[:username],
-                amount: amount.to_s
+                amount: amount.to_s,
+                currency: SiteSetting.currency
             })
         )
 
@@ -50,9 +52,7 @@ module Discourse6dcTipper
         }
     end
 
-    def get_transactions
-        ensure_logged_in
-        
+    def get_transactions        
         target_id = params[:target_id].to_i
 
         # Get latest transactions first
@@ -68,8 +68,6 @@ module Discourse6dcTipper
     end
 
     def has_wallet
-        ensure_logged_in
-
         target_user = params[:target_id].to_i
         user = User.find_by(id: target_user)
         has_account = false

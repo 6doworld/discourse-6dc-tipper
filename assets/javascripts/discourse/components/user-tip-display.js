@@ -9,44 +9,49 @@ export default Component.extend({
     dialog: service(),
     shouldDisplay: true,
     location: '',
-    buttonClass: 'btn-primary user-card-chat-btn btn btn-icon-text',
+    buttonClass: 'btn-primary user-card-chat-btn btn-icon-text',
     
     init() {
-        this._super(...arguments);        
-        this.set("buttonClass", this.setStyle());
-
-        if (
-            this.getTargetUser().id === -1 || 
-            this.getTargetUser().id === this.currentUser.id
-        ) {
-            this.set("shouldDisplay", false);
-        }
+        this._super(...arguments);
+        this.show(this.getTargetUser());
     },
 
-    setStyle () {
-        return (
-            this.location === "profile-view" ?
-            "btn btn-default" : "btn-primary user-card-chat-btn btn btn-icon-text"
-        )
+    show(user) {
+        if (
+            user.id === -1 || 
+            user.id === this.currentUser.id
+        ) this.set("shouldDisplay", false);
     },
 
     getTargetUser() {
-        if (this.location === "profile-view") {            
-            return {
-                id: this.model.id,
-                username: this.model.username
-            }
-        } else if (this.location === "profile-popup") {
-            return {
-                id: this.parentView.user.id,
-                username: this.parentView.user.username
-            }
-        } else {
-            return {
-                id: this.currentUser.id,
-                username: this.currentUser.username
-            }
+        let user;
+
+        switch (this.location) {
+            case "profile-view":
+                user = {
+                    id: this.model.id,
+                    username: this.model.username
+                };
+
+                this.set("buttonClass", "btn-default");
+                break;
+            case "profile-popup":
+                user = {
+                    id: this.parentView.user.id,
+                    username: this.parentView.user.username
+                };
+
+                break;     
+            default:
+                user = {
+                    id: this.currentUser.id,
+                    username: this.currentUser.username
+                };
+
+                break; 
         }
+
+        return user;
     },
 
     @action

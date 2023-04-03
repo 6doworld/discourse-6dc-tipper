@@ -21,26 +21,50 @@ plugins:
     default: "6D0"
   network_chain_id:
     client: true
+    type: integer
     default: 43113
+    min: 0
   siwe_statement:
     client: true
     default: 'Sign-in to Discourse via Ethereum'
+  
+  # CUSTOM TIP VALUE VALIDATOR SETTING
+  ## Edit min/max tip
+  ## Custom validation to prevent admin/mods making mistakes
+  minimum_tip_validator:
+    type: float
+    default: 0.0001 # Minimum tip admin can decrease to
+    client: false
+    hidden: true
+  maximum_tip_validator:
+    type: float
+    default: 0.5 # Maximum tip admin can increase to
+    client: false
+    hidden: true
+  # END OF CUSTOM TIP VALUE VALIDATOR SETTING
+
   minimum_tip:
     client: true
     type: float
-    default: 0.01
-    min: 0.0001
+    default: 0.0001
+    validator: "TipperValueValidator"
   maximum_tip:
     client: true
     type: float
     default: 0.5
-    min: 0.0001
+    validator: "TipperValueValidator"
   max_tips_per_day:
     client: true
+    type: integer
     default: 3
+    min: 0
   max_tips_per_hour:
     client: true
+    type: integer
     default: 6
+    min: 0
   max_tips_per_minute:
     client: true
+    type: integer
     default: 1
+    min: 0

@@ -32,7 +32,7 @@ en:
       title: Send some crypto
       description: You are about to send some crypto to <u><strong>%{user}</strong></u>, make sure you know what you are doing since this action cannot be reverted
       
-      amount_sending: You are sending <strong>%{amount}</strong> %{currency}
+      amount_sending: "You are sending <strong>%{amount}</strong> %{currency}"
       hide_custom_amount: Hide
       custom_amount: Enter a custom amount
 
@@ -53,4 +53,4 @@ en:
       address_not_found: No address was found
 
     success:
-      tip: You have successfully sent %{amount} %{currency} to %{name}
+      tip: You have successfully sent <strong>%{amount} %{currency}</strong> to <span title="%{wallet}" class="tooltip">%{name}</span>, we have let them know!

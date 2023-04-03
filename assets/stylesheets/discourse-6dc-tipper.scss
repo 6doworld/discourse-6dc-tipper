@@ -28,3 +28,8 @@
     display: initial;
   }
 }
+
+span.tooltip {
+  cursor: pointer;
+  border-bottom: 1px dotted currentColor;
+}

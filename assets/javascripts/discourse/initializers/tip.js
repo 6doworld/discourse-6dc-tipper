@@ -7,9 +7,7 @@ export default {
     initialize() { 
         Number.prototype.countDecimals = function () { if(Math.floor(this.valueOf()) === this.valueOf()) return 0; return this.toString().split(".")[1].length || 0; }
              
-        withPluginApi('0.1', api => { 
-            api.includePostAttributes('poster_username', 'poster_user_id', 'poster_id');
-            
+        withPluginApi('0.1', api => {             
             api.attachWidgetAction('post', 'showTipModal', function () {
                 showModal('tipModal')
                 .set('user', {

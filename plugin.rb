@@ -6,11 +6,13 @@
 
 enabled_site_setting :discourse_6dc_tipper
 register_svg_icon 'fab-ethereum'
-register_asset 'stylesheets/discourse-siwe.scss'
-register_svg_icon "hand-holding-usd" # BA
+register_asset 'stylesheets/discourse-6dc-tipper.scss'
+register_svg_icon "hand-holding-usd" # 6DC Plugin Tipper addition
 
+# Site setting validators must be loaded before initialize
 %w[
   ../lib/omniauth/strategies/siwe.rb
+  ../lib/validators/tipper_value_validator.rb
 ].each { |path| load File.expand_path(path, __FILE__) }
 
 gem 'pkg-config', '1.5.1', require: false
