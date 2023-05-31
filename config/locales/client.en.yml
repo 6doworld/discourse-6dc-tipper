@@ -19,11 +19,11 @@ en:
     login:
       siwe:
         name: "6DC Wallet"
-        title: "with Ethereum"
+        title: "with Web3 Wallet"
     eth_providers:
-      title: "Sign-in with Ethereum"
+      title: "Sign-in with Web3 Wallet"
       buttons:
-        start: "Sign-in with Ethereum"
+        start: "Sign-in with Web3 Wallet"
 
     tip_button_title: Tip
     tip_icon_alt: tip some crypto
