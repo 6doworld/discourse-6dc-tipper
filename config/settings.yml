@@ -18,7 +18,7 @@ plugins:
     default: ''
   currency:
     client: true
-    default: "6D0"
+    default: "6DC"
   network_chain_id:
     client: true
     type: integer
@@ -26,7 +26,7 @@ plugins:
     min: 0
   siwe_statement:
     client: true
-    default: 'Sign-in to Discourse via Ethereum'
+    default: 'Sign-in to 6DC via Web3 Wallet'
   
   # CUSTOM TIP VALUE VALIDATOR SETTING
   ## Edit min/max tip
@@ -38,7 +38,7 @@ plugins:
     hidden: true
   maximum_tip_validator:
     type: float
-    default: 0.5 # Maximum tip admin can increase to
+    default: 1000 # Maximum tip admin can increase to
     client: false
     hidden: true
   # END OF CUSTOM TIP VALUE VALIDATOR SETTING
