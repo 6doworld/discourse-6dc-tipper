@@ -1,4 +1,4 @@
-# Sign-In with Ethereum for Discourse
+# Sign-In with Web3 wallet and Tipping system for Discourse
 
 ## Overview
 Discourse is an open-source discussion platform used for most crypto governances 
@@ -10,10 +10,10 @@ quick guide on how to add Sign-In with Ethereum to your existing Discourse.
 third party plugins, like [Communiteq](https://www.communiteq.com/).
 
 ### Note
-The Sign-In with Ethereum plugin still requires users to enter an email to 
+The Sign-In with Web3 wallet plugin still requires users to enter an email to 
 associate with their accounts after authenticating for the first time. If the 
 user owns an ENS address, it will be the default selected username. Once an 
-email address is associated, users can then sign in using the SIWE option at any 
+email address is associated, users can then sign in using the WEB3 option at any 
 time.
 
 ## Enabling the Plugin
