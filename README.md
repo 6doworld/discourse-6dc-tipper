@@ -37,19 +37,19 @@ hooks:
       cd: $home/plugins
       cmd:
         - sudo -E -u discourse git clone https://github.com/discourse/docker_manager.git
-        - sudo -E -u discourse git clone https://github.com/spruceid/discourse-siwe-auth.git   # <-- added
+        - sudo -E -u discourse git clone https://github.com/6doworld/discourse-6dc-tipper.git   # <-- added
 ```
 
 Follow the existing format of the docker_manager.git line; if it does not 
-contain `sudo -E -u discourse` then insert - `git clone https://github.com/spruceid/discourse-siwe-auth.git`.
+contain `sudo -E -u discourse` then insert - `git clone https://github.com/6doworld/discourse-6dc-tipper.git`.
 
 Rebuild the container:
 ```bash
 cd /var/discourse
 ./launcher rebuild app
 ```
-To disable it either remove the plugin or uncheck discourse siwe enabled at 
-(Admin Settings -> Plugins -> discourse-siwe -> discourse siwe enabled ).
+To disable it either remove the plugin or uncheck discourse 6dc tipper enabled at 
+(Admin Settings -> Plugins -> discourse-6dc-tipper -> enabled ).
 
 ![Discourse Plugins](/settings.png "Discourse Plugins")
 ![Enable plugin at settings](/enable.png "Enable plugin at settings")
