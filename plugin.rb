@@ -2,7 +2,7 @@
 
 # name: discourse-6dc-tipper
 # about: A discourse plugin to enable users to sign-in through Ethereum networks and tip users
-# version: 0.0.1
+# version: 0.1.0
 
 enabled_site_setting :discourse_6dc_tipper
 register_svg_icon 'fab-ethereum'
