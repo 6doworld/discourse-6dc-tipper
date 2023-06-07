@@ -58,7 +58,7 @@ When you use this project in your software, please credit us as:
 
  
 
-This software includes code and ideas from [Tip & Sign-In with a Web3 Wallet on Discourse](https://github.com/6doworld/discourse-6dc-tipper/), developed by the [6DO.World Team](https://6do.world).
+This software includes code and ideas from [Discourse Siwe Auth](https://github.com/spruceid/discourse-siwe-auth), developed by the [6DO.World Team](https://6do.world).
 
  
 
