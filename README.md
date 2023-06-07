@@ -1,5 +1,7 @@
 # Tip & Sign-In with a Web3 Wallet on Discourse (6do.world)
 
+This project is based on the work of [Spruce Systems, Inc.](https://github.com/spruceid). The original project can be found at [discourse-siwe-auth](https://github.com/spruceid/discourse-siwe-auth).
+
 ## Overview
 Discourse is an open-source discussion platform used for most crypto governances 
 and projects to discuss proposals, updates, and research. The following is a 
@@ -97,3 +99,10 @@ We have implemented limitations so contract owners have a peace of mind. Lock yo
 ## Daily, Hourly and Minute-based Limitations
 You can set limitations for how often users can tip every day, hour and minute. If you would prefer to remove the cap you can enter `0` or `false`. Each limitation is applied in the order that appears on the admin panel.
 ![Daily, Hourly and Minute-based Limitations](https://github.com/waqaarali/discourse-6dc-tipper/assets/109590536/134a3269-a252-4ed8-997b-4d5cadab026d. "Daily, Hourly and Minute-based Limitations")
+
+## Credit
+- https://github.com/spruceid/discourse-siwe-auth - (Used as Web3 Wallet authentication)
+
+## License
+
+This project is licensed under Apache 2.0.
