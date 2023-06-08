@@ -47,11 +47,13 @@ export default Controller.extend(ModalFunctionality, {
                 }
             }
         });
+        
+        this.set("tipValue", this.sampleValues[0].toString());
     },
 
     onClose() {
         this.set("user", {});
-        this.set("tipValue", this.sampleValues[0].toString());
+        this.set("tipValue", "0");
         this.set("showMoreOptions", false);
         this.set("targetWallet", "");  
     },
