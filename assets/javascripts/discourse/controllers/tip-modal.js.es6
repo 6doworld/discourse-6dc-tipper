@@ -51,7 +51,7 @@ export default Controller.extend(ModalFunctionality, {
 
     onClose() {
         this.set("user", {});
-        this.set("tipValue", "0");
+        this.set("tipValue", this.sampleValues[0].toString());
         this.set("showMoreOptions", false);
         this.set("targetWallet", "");  
     },
