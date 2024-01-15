@@ -1,23 +1,23 @@
-<div class="preferences-wallet">
-    <label class="control-label">
-        Wallet Details
-    </label>
+Disabling the ability to generate wallets manually<div class="preferences-wallet">
+    {{#if this.userWallet}}
+        <label class="control-label">
+            Wallet Details
+        </label>
 
-    <div class="control-group" data-setting-name="user_chat_enabled">
-        {{#if this.userWallet}}
-            <div class="info-row">
-                <p><b>Address:</b> {{ this.userWallet }}</p>
-                <p><b>Balance:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
-            </div>
+        <div class="control-group" data-setting-name="user_chat_enabled">
+                <div class="info-row">
+                    <p><b>Address:</b> {{ this.userWallet }}</p>
+                    <p><b>Balance:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
+                </div>
 
-            <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ onTransferToggle }} />
-        {{else}}
-            <p>This will be activated once you receive a transaction</p>
-            {{!-- <DButton @class="btn-primary" @label="preferences.buttons.claim_wallet" @action={{action "generateWallet" }} /> --}}
-        {{/if}}
-    </div>
-
-    <hr />
+                <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ onTransferToggle }} />
+            {{!-- {{else}} --}}
+                {{!-- <p>This will be activated once you receive a transaction</p> --}}
+                {{!-- <DButton @class="btn-primary" @label="preferences.buttons.claim_wallet" @action={{action "generateWallet" }} /> --}}
+        </div>
+        
+        <hr />
+    {{/if}}
 
     <div class="transactions-history">
         <label class="control-label">
@@ -41,7 +41,7 @@
                             {{increment i}}
                         </td>
                         <td style="padding: 10px">
-                            <a href="https://www.blockchain.com/explorer/transactions/eth/0x37d06f13886c5553990f9cf1d9f94c66640dbaaa9fde6044a6125e3695abb33a"
+                            <a href="#"
                                 target="_blank">
                                 {{ v.tx_hash }}
                             </a>
