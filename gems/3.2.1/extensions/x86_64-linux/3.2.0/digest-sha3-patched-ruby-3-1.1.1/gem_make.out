@@ -1,0 +1,48 @@
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/digest-sha3-patched-ruby-3-1.1.1/ext/digest
+/root/.rbenv/versions/3.2.1/bin/ruby extconf.rb
+checking for ruby/digest.h... yes
+checking for rb_str_set_len()... yes
+creating Makefile
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/digest-sha3-patched-ruby-3-1.1.1/ext/digest
+make DESTDIR\= sitearchdir\=./.gem.20240109-348110-tt5wd4 sitelibdir\=./.gem.20240109-348110-tt5wd4 clean
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/digest-sha3-patched-ruby-3-1.1.1/ext/digest
+make DESTDIR\= sitearchdir\=./.gem.20240109-348110-tt5wd4 sitelibdir\=./.gem.20240109-348110-tt5wd4
+compiling KeccakF-1600-reference.c
+KeccakF-1600-reference.c: In function ‘KeccakInitializeRoundConstants’:
+KeccakF-1600-reference.c:176:6: warning: old-style function definition [-Wold-style-definition]
+  176 | void KeccakInitializeRoundConstants()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+KeccakF-1600-reference.c: In function ‘KeccakInitializeRhoOffsets’:
+KeccakF-1600-reference.c:191:6: warning: old-style function definition [-Wold-style-definition]
+  191 | void KeccakInitializeRhoOffsets()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+KeccakF-1600-reference.c: In function ‘KeccakInitialize’:
+KeccakF-1600-reference.c:207:6: warning: old-style function definition [-Wold-style-definition]
+  207 | void KeccakInitialize()
+      |      ^~~~~~~~~~~~~~~~
+KeccakF-1600-reference.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling KeccakNISTInterface.c
+compiling KeccakSponge.c
+compiling displayIntermediateValues.c
+compiling sha3.c
+sha3.c: In function ‘Init_sha3’:
+sha3.c:137:1: warning: old-style function definition [-Wold-style-definition]
+  137 | Init_sha3() {
+      | ^~~~~~~~~
+sha3.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+linking shared-object digest/sha3.so
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/digest-sha3-patched-ruby-3-1.1.1/ext/digest
+make DESTDIR\= sitearchdir\=./.gem.20240109-348110-tt5wd4 sitelibdir\=./.gem.20240109-348110-tt5wd4 install
+/usr/bin/install -c -m 0755 sha3.so ./.gem.20240109-348110-tt5wd4/digest
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/digest-sha3-patched-ruby-3-1.1.1/ext/digest
+make DESTDIR\= sitearchdir\=./.gem.20240109-348110-tt5wd4 sitelibdir\=./.gem.20240109-348110-tt5wd4 clean

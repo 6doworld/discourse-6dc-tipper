@@ -1,0 +1,95 @@
+=== Using 64-bit reference ===
+find_header: checking for sha3.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -o conftest -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -Iconftest.c  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions  conftest.c  -L. -L/root/.rbenv/versions/3.2.1/lib -Wl,-rpath,/root/.rbenv/versions/3.2.1/lib -L. -L/root/.rbenv/versions/3.2.1/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/root/.rbenv/versions/3.2.1/lib -L/root/.rbenv/versions/3.2.1/lib -lruby  -lm -lpthread  -lc"
+cc1: warning: conftest.c: not a directory
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions    -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <sha3.h>
+/* end */
+
+--------------------
+
+find_header: checking for digest.h... -------------------- no
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions    -c conftest.c"
+In file included from conftest.c:3:
+./digest.h:38:9: error: unknown type name ‘Keccak_HashInstance’
+   38 |         Keccak_HashInstance *state;
+      |         ^~~~~~~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <digest.h>
+/* end */
+
+--------------------
+
+find_header: checking for align.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions    -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <align.h>
+/* end */
+
+--------------------
+
+find_header: checking for brg_endian.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions    -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <brg_endian.h>
+/* end */
+
+--------------------
+
+find_header: checking for KeccakSponge.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions    -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <KeccakSponge.h>
+/* end */
+
+--------------------
+
+find_header: checking for KeccakHash.h... -------------------- yes
+
+LD_LIBRARY_PATH=.:/root/.rbenv/versions/3.2.1/lib "gcc -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-linux -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/root/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I  -I.lib/  -I./lib/common  -I./lib/high/Keccak  -I./lib/high/Keccak/FIPS202  -I./lib/low/KeccakP-1600/common  -I./lib/low/KeccakP-1600/ref-32bits  -I./lib/low/KeccakP-1600/ref-64bits  -I/root/.rbenv/versions/3.2.1/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef  -fPIC -fomit-frame-pointer -O3 -g0 -fms-extensions    -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <KeccakHash.h>
+/* end */
+
+--------------------
+

@@ -75,7 +75,7 @@ const Web3Modal = EmberObject.extend({
             throw new Error(I18n.t("error.wrong_account", { wallet: ownerAddress }));
         }
         
-        if (erc20Address !== "" || !!!erc20Address) {
+        if (erc20Address.length || erc20Address) {
             const contract = new ethers.Contract(erc20Address, erc_20_abi, provider);
             const signer = await contract.provider.getSigner(ownerAddress);
             const contractSigner = contract.connect(signer);
@@ -100,6 +100,30 @@ const Web3Modal = EmberObject.extend({
 
     async close() {
         await this.web3Modal.disconnect();
+    },
+
+    async getBalanceForWallet(rpcProvider, walletAddress, customToken = {}) {
+        const provider = new ethers.providers.getDefaultProvider(rpcProvider);
+        
+        if (customToken.address.length) {
+            const contract = new ethers.Contract(customToken.address, erc_20_abi, provider);
+            const decimals = await contract.decimals();
+            const balance = await contract.balanceOf(walletAddress);
+            const adjustedBalance = balance / (10 ** decimals);
+            
+            return {
+                token: customToken.name,
+                balance: adjustedBalance.toLocaleString('fullwide', { useGrouping: false })
+            };
+        } else {
+            const balanceWei = await provider.getBalance(walletAddress);
+            const balanceEth = ethers.utils.formatEther(balanceWei);
+
+            return {
+                token: customToken.name,
+                balance: balanceEth.toLocaleString('fullwide', { useGrouping: false })
+            }
+        }
     },
 
     async signMessage(settingChainId) {

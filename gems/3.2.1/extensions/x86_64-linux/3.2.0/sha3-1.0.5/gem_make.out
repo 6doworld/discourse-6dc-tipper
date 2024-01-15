@@ -1,0 +1,75 @@
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/sha3-1.0.5/ext/sha3
+/root/.rbenv/versions/3.2.1/bin/ruby extconf.rb
+checking for sha3.h... yes
+checking for digest.h... no
+checking for align.h... yes
+checking for brg_endian.h... yes
+checking for KeccakSponge.h... yes
+checking for KeccakHash.h... yes
+creating Makefile
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/sha3-1.0.5/ext/sha3
+make DESTDIR\= sitearchdir\=./.gem.20240109-348551-3vxekq sitelibdir\=./.gem.20240109-348551-3vxekq clean
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/sha3-1.0.5/ext/sha3
+make DESTDIR\= sitearchdir\=./.gem.20240109-348551-3vxekq sitelibdir\=./.gem.20240109-348551-3vxekq
+compiling KeccakHash.c
+compiling KeccakP-1600-reference.c
+KeccakP-1600-reference.c:25:5: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+   25 | #if DEBUG
+      |     ^~~~~
+KeccakP-1600-reference.c: In function ‘KeccakP1600_AddByte’:
+KeccakP-1600-reference.c:154:9: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+  154 |     #if DEBUG
+      |         ^~~~~
+KeccakP-1600-reference.c: In function ‘KeccakP1600_AddBytes’:
+KeccakP-1600-reference.c:166:9: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+  166 |     #if DEBUG
+      |         ^~~~~
+KeccakP-1600-reference.c: In function ‘KeccakP1600_OverwriteBytes’:
+KeccakP-1600-reference.c:178:9: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+  178 |     #if DEBUG
+      |         ^~~~~
+KeccakP-1600-reference.c: In function ‘KeccakP1600_OverwriteWithZeroes’:
+KeccakP-1600-reference.c:189:9: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+  189 |     #if DEBUG
+      |         ^~~~~
+KeccakP-1600-reference.c: In function ‘KeccakP1600_ExtractBytes’:
+KeccakP-1600-reference.c:398:9: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+  398 |     #if DEBUG
+      |         ^~~~~
+KeccakP-1600-reference.c: In function ‘KeccakP1600_ExtractAndAddBytes’:
+KeccakP-1600-reference.c:411:9: warning: "DEBUG" is not defined, evaluates to 0 [-Wundef]
+  411 |     #if DEBUG
+      |         ^~~~~
+KeccakP-1600-reference.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling KeccakSponge.c
+compiling digest.c
+digest.c: In function ‘Init_sha3_n_digest’:
+digest.c:247:6: warning: old-style function definition [-Wold-style-definition]
+  247 | void Init_sha3_n_digest()
+      |      ^~~~~~~~~~~~~~~~~~
+digest.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling sha3.c
+sha3.c: In function ‘Init_sha3_n’:
+sha3.c:56:6: warning: old-style function definition [-Wold-style-definition]
+   56 | void Init_sha3_n()
+      |      ^~~~~~~~~~~
+sha3.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+linking shared-object sha3_n.so
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/sha3-1.0.5/ext/sha3
+make DESTDIR\= sitearchdir\=./.gem.20240109-348551-3vxekq sitelibdir\=./.gem.20240109-348551-3vxekq install
+/usr/bin/install -c -m 0755 sha3_n.so ./.gem.20240109-348551-3vxekq
+
+current directory: /root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/sha3-1.0.5/ext/sha3
+make DESTDIR\= sitearchdir\=./.gem.20240109-348551-3vxekq sitelibdir\=./.gem.20240109-348551-3vxekq clean

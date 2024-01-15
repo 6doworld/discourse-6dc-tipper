@@ -1,0 +1,1 @@
+["--host=x86_64-linux-gnu", "--enable-static", "--disable-shared", "--with-pic=yes", "--enable-module-recovery", "--prefix=/root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/rbsecp256k1-6.0.0/ext/rbsecp256k1/ports/x86_64-linux-gnu/libsecp256k1/0.2.0"]

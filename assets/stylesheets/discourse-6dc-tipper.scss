@@ -33,3 +33,57 @@ span.tooltip {
   cursor: pointer;
   border-bottom: 1px dotted currentColor;
 }
+
+.user-preferences .form-vertical:has(> .preferences-wallet) {
+  width: 100%;
+}
+
+.flex-break {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+
+  .max {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+
+    input {
+      margin-bottom: 0;
+    }
+
+    margin-bottom: 10px;
+  }
+}
+
+.user-preferences {
+  div, p {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-vertical {
+    .preferences-wallet {
+      .info-row {
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0px;
+      }
+
+      .transactions-history {
+        // border: 1px solid grey; 
+        border-radius: 5px; 
+        // padding: 10px; 
+        width: 100%;
+    
+        table {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

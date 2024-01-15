@@ -1,0 +1,18 @@
+make  all-am
+make[1]: Entering directory '/root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/rbsecp256k1-6.0.0/ext/rbsecp256k1/tmp/x86_64-linux-gnu/ports/libsecp256k1/0.2.0/secp256k1-0.2.0'
+  CC       src/bench.o
+  CC       src/libsecp256k1_la-secp256k1.lo
+  CC       src/libsecp256k1_precomputed_la-precomputed_ecmult.lo
+  CC       src/libsecp256k1_precomputed_la-precomputed_ecmult_gen.lo
+  CCLD     libsecp256k1_precomputed.la
+  CCLD     libsecp256k1.la
+  CCLD     bench
+  CC       src/bench_internal-bench_internal.o
+  CCLD     bench_internal
+  CC       src/bench_ecmult-bench_ecmult.o
+  CCLD     bench_ecmult
+  CC       src/tests-tests.o
+  CCLD     tests
+  CC       src/exhaustive_tests-tests_exhaustive.o
+  CCLD     exhaustive_tests
+make[1]: Leaving directory '/root/discourse/plugins/discourse-6dc-tipper/gems/3.2.1/gems/rbsecp256k1-6.0.0/ext/rbsecp256k1/tmp/x86_64-linux-gnu/ports/libsecp256k1/0.2.0/secp256k1-0.2.0'

@@ -19,6 +19,9 @@ plugins:
   currency:
     client: true
     default: "6DC"
+  network_rpc_url:
+    client: true
+    default: "https://sepolia.infura.io/v3/9112f4a5ae1e4b9d8c721cd5f30dd5b3"
   network_chain_id:
     client: true
     type: integer
