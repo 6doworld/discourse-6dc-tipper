@@ -86,7 +86,7 @@ export default class PreferencesWalletController extends Controller {
 
   @computed('walletAddress')
   get userWallet() {
-    return this.walletAddress.length ? this.walletAddress : false
+    return this.walletAddress !== "0x0000000000000000" ? this.walletAddress : false
   }
 
   @action

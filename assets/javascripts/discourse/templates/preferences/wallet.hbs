@@ -12,7 +12,8 @@
 
             <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ onTransferToggle }} />
         {{else}}
-            <DButton @class="btn-primary" @label="preferences.buttons.claim_wallet" @action={{action "generateWallet" }} />
+            <p>This will be activated once you receive a transaction</p>
+            {{!-- <DButton @class="btn-primary" @label="preferences.buttons.claim_wallet" @action={{action "generateWallet" }} /> --}}
         {{/if}}
     </div>
 

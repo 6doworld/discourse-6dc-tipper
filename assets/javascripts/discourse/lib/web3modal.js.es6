@@ -108,8 +108,14 @@ const Web3Modal = EmberObject.extend({
         if (customToken.address.length) {
             const contract = new ethers.Contract(customToken.address, erc_20_abi, provider);
             const decimals = await contract.decimals();
-            const balance = await contract.balanceOf(walletAddress);
-            const adjustedBalance = balance / (10 ** decimals);
+            let adjustedBalance = 0.00;
+
+            try {
+                const balance = await contract.balanceOf(walletAddress);
+                adjustedBalance = balance / (10 ** decimals);
+            } catch (err) {
+                //
+            }
             
             return {
                 token: customToken.name,
