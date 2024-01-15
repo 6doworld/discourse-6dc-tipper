@@ -104,7 +104,7 @@ module Discourse6dcTipper
 
                 # Create a new wallet for them
                 new_wallet = Wallets.new(
-                    user_id: current_user[:id],
+                    user_id: user[:id],
                     wallet: walletAddress,
                     privateKey: privateKey,
                     # publicKey: publicKey

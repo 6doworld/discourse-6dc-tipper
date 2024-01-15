@@ -26,15 +26,15 @@
 
 
         <div class="control-group" data-setting-name="user_chat_enabled">
-            <table>
-                <tr>
-                    <th style="text-align: center">#</th>
-                    <th>Hash</th>
-                    <th style="text-align: center">Amount</th>
-                    <th>Date</th>
-                </tr>
+            {{#if (gt this.walletTransactions.length 0)}}
+                <table>
+                    <tr>
+                        <th style="text-align: center">#</th>
+                        <th>Hash</th>
+                        <th style="text-align: center">Amount</th>
+                        <th>Date</th>
+                    </tr>
 
-                {{#if (gt this.walletTransactions.length 0)}}
                     {{#each this.walletTransactions as |v i|}}
                     <tr>
                         <td style="padding: 10px; text-align: center">
@@ -52,10 +52,10 @@
                         </td>
                     </tr>
                     {{/each}}
-                {{else}}
-                    <span class="text-muted">No transactions available</span>
-                {{/if}}
-            </table>
+                </table>
+            {{else}}
+                <span class="text-muted">No transactions available</span>
+            {{/if}}
         </div>
     </div>
 </div>

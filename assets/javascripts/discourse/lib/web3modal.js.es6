@@ -107,10 +107,10 @@ const Web3Modal = EmberObject.extend({
         
         if (customToken.address.length) {
             const contract = new ethers.Contract(customToken.address, erc_20_abi, provider);
-            const decimals = await contract.decimals();
             let adjustedBalance = 0.00;
-
+            
             try {
+                const decimals = await contract.decimals();
                 const balance = await contract.balanceOf(walletAddress);
                 adjustedBalance = balance / (10 ** decimals);
             } catch (err) {
@@ -122,8 +122,14 @@ const Web3Modal = EmberObject.extend({
                 balance: adjustedBalance.toLocaleString('fullwide', { useGrouping: false })
             };
         } else {
-            const balanceWei = await provider.getBalance(walletAddress);
-            const balanceEth = ethers.utils.formatEther(balanceWei);
+            let balanceEth = 0.00;
+
+            try {
+                const balanceWei = await provider.getBalance(walletAddress);
+                balanceEth = ethers.utils.formatEther(balanceWei);
+            } catch(err) {
+                //
+            }
 
             return {
                 token: customToken.name,
