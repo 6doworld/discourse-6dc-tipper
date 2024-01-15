@@ -5,7 +5,9 @@ en:
     siwe_json_rpc: "JSON RPC configuration to be used for WalletConnect. If set, will supersede Infura ID for WalletConnect"
     siwe_statement: "Statement that will be displayed in the message"
     
+    network_rpc_url: "Network RPC URL that is used for on-the-fly wallet generation & transactions"
     network_chain_id: "Network Chain ID that the plugin will be locked to for tipping/wallet connection"
+
     currency: "Please enter a currency that you would like to display for the end-user"
 
     minimum_tip: "The minimum amount a user can tip"
@@ -30,14 +32,29 @@ en:
 
     modal:
       title: Send some crypto
-      description: You are about to send some crypto to <u><strong>%{user}</strong></u>, make sure you know what you are doing since this action cannot be reverted
+      description: "<p>You are about to send some crypto to&nbsp;<strong><u>%{user}</strong></u>, make sure you know what you are doing since this action cannot be reverted</p>"
       
-      amount_sending: "You are sending <strong>%{amount}</strong> %{currency}"
+      amount_sending: "You are sending&nbsp;<strong>%{amount}</strong>&nbsp;%{currency}"
       hide_custom_amount: Hide
       custom_amount: Enter a custom amount
 
       send_button: Send
       close_button: Close
+
+    preferences:
+      modal:
+        title: Transfer your funds
+        description: You can transfer your funds to your own personal wallet
+
+        amount_label: Amount to transfer
+        address_label: Wallet Address
+
+        max_button: Max
+        transfer_button: Transfer
+        close_button: Close
+      buttons:
+        claim_wallet: Generate Wallet
+        transfer_wallet: Transfer Funds
 
     error:
       user_tip: You cannot tip yourself

@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 # name: discourse-6dc-tipper
+# name: discourse-6dc-tipper
 # about: A discourse plugin to enable users to sign-in through Ethereum networks and tip users
 # url: https://github.com/6doworld/discourse-6dc-tipper
-# version: 0.1.0
+# version: 0.2.0
 
 enabled_site_setting :discourse_6dc_tipper
 register_svg_icon 'fab-ethereum'
 register_asset 'stylesheets/discourse-6dc-tipper.scss'
 register_svg_icon "hand-holding-usd" # 6DC Plugin Tipper addition
+register_svg_icon "credit-card"
 
 # Site setting validators must be loaded before initialize
 %w[
@@ -21,12 +23,14 @@ gem 'mkmfmf', '0.4', require: false
 gem 'keccak', '1.3.0', require: false
 gem 'zip', '2.0.2', require: false
 gem 'mini_portile2', '2.8.0', require: false
-gem 'rbsecp256k1', '5.1.1', require: false
+# gem 'rbsecp256k1', '5.1.1', require: false
+gem 'forwardable', '1.3.3', require: false
+gem 'rbsecp256k1', '6.0.0', require: false
 gem 'konstructor', '1.0.2', require: false
 gem 'ffi', '1.16.3', require: false
 gem 'ffi-compiler', '1.0.1', require: false
 gem 'scrypt', '3.0.7', require: false
-gem 'eth', '0.5.6', require: false
+gem 'eth', '0.5.11', require: false
 gem 'siwe', '1.1.2', require: false
 
 class ::Discourse6dcAuthenticator < ::Auth::ManagedAuthenticator
@@ -55,15 +59,25 @@ auth_provider authenticator: ::Discourse6dcAuthenticator.new,
               full_screen_login: true
 
 after_initialize do
+  UserUpdater::OPTION_ATTR.push(:chat_header_indicator_preference)
+
   %w[
     ../lib/discourse_6dc_tipper/engine.rb
     ../lib/discourse_6dc_tipper/routes.rb
     ../app/models/wallet_transactions.rb
+    ../app/models/wallets.rb
     ../app/controllers/auth_controller.rb
     ../app/controllers/transaction_controller.rb
+    ../app/controllers/wallet_controller.rb
+    ../app/jobs/transfer_service_job.rb
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   Discourse::Application.routes.prepend do
     mount ::Discourse6dcTipper::Engine, at: '/discourse-6dc-tipper'
+
+    get "u/:username/preferences/wallet" => "users#preferences",
+        :constraints => {
+          username: RouteFormat.username,
+        }
   end
 end

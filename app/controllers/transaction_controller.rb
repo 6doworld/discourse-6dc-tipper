@@ -53,16 +53,23 @@ module Discourse6dcTipper
     end
 
     def get_transactions        
-        target_id = params[:target_id].to_i
+        # target_id = params[:target_id].to_i
 
         # Get latest transactions first
+        # transactions = WalletTransactions.where(
+        #     user_id: [current_user[:id], target_id]
+        # ).order('created_at DESC')
         transactions = WalletTransactions.where(
-            user_id: [current_user[:id], target_id]
+            user_id: current_user[:id]
+        ).or(
+            WalletTransactions.where(
+                target_user_id: current_user[:id]
+            )
         ).order('created_at DESC')
 
         render json: { 
             status: true, 
-            message: "",
+            message: "OK.",
             data: transactions 
         }
     end
@@ -81,6 +88,37 @@ module Discourse6dcTipper
             current_user.associated_accounts.each { |account| current_user_has_account = account[:description] if account[:name] == "siwe" }
         end
 
+        # On-the-fly wallet generation
+        if has_account == false
+            user_wallet = Wallets.find_by(user_id: target_user)
+            if !user_wallet.nil?
+                has_account = user_wallet[:wallet]
+            else
+                # Generate a new Ethereum key pair
+                key = Eth::Key.new
+
+                # Get the private key, public key, and address from the key pair
+                privateKey = key.private_hex
+                publicKey = key.public_hex
+                walletAddress = key.address.address
+
+                # Create a new wallet for them
+                new_wallet = Wallets.new(
+                    user_id: current_user[:id],
+                    wallet: walletAddress,
+                    privateKey: privateKey,
+                    # publicKey: publicKey
+                )
+
+                # Save the new wallet to the database
+                new_wallet.save
+
+                has_account = walletAddress
+            end
+        end
+        # End of on-the-fly wallet generation
+
+        # If something fails above, just a security measure fall-back
         if has_account == false
             PostCreator.create(
                 Discourse.system_user,

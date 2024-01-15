@@ -1,0 +1,60 @@
+<div class="preferences-wallet">
+    <label class="control-label">
+        Wallet Details
+    </label>
+
+    <div class="control-group" data-setting-name="user_chat_enabled">
+        {{#if this.userWallet}}
+            <div class="info-row">
+                <p><b>Address:</b> {{ this.userWallet }}</p>
+                <p><b>Balance:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
+            </div>
+
+            <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ onTransferToggle }} />
+        {{else}}
+            <DButton @class="btn-primary" @label="preferences.buttons.claim_wallet" @action={{action "generateWallet" }} />
+        {{/if}}
+    </div>
+
+    <hr />
+
+    <div class="transactions-history">
+        <label class="control-label">
+            Transaction History ({{ this.walletTransactions.length }})
+        </label>
+
+
+        <div class="control-group" data-setting-name="user_chat_enabled">
+            <table>
+                <tr>
+                    <th style="text-align: center">#</th>
+                    <th>Hash</th>
+                    <th style="text-align: center">Amount</th>
+                    <th>Date</th>
+                </tr>
+
+                {{#if (gt this.walletTransactions.length 0)}}
+                    {{#each this.walletTransactions as |v i|}}
+                    <tr>
+                        <td style="padding: 10px; text-align: center">
+                            {{increment i}}
+                        </td>
+                        <td style="padding: 10px">
+                            <a href="https://www.blockchain.com/explorer/transactions/eth/0x37d06f13886c5553990f9cf1d9f94c66640dbaaa9fde6044a6125e3695abb33a"
+                                target="_blank">
+                                {{ v.tx_hash }}
+                            </a>
+                        </td>
+                        <td style="padding: 10px; text-align: center">{{ v.tx_amount }} {{ this.walletTokenName }}</td>
+                        <td style="padding: 10px">
+                            {{ v.created_at }}
+                        </td>
+                    </tr>
+                    {{/each}}
+                {{else}}
+                    <span class="text-muted">No transactions available</span>
+                {{/if}}
+            </table>
+        </div>
+    </div>
+</div>

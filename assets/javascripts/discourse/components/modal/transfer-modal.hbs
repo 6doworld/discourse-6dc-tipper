@@ -1,0 +1,73 @@
+<DModal @class="tip-modal" @title={{ i18n "modal.title" }} @closeModal={{@closeModal}} class="transfer-modal-modal">
+    <:body>
+        <div class="input-group">
+            <label>
+                {{ html-safe (i18n "preferences.modal.description" user=this.user.username) }}
+            </label>
+
+            <hr>
+
+            <label>
+                <p><b>Balance:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
+            </label>
+            
+            <hr>
+
+            <div class="flex-break">
+                <label>
+                    {{ i18n "preferences.modal.amount_label" }}:
+                </label>
+                
+                <div class="max">
+                    <Input
+                        @type="text"
+                        autocomplete="off"
+                        onkeypress={{ action "onKeyPress" }}
+                        onpaste={{ action "onPaste" }}
+                        onchange={{ action "onInputChangeAmount" }}
+                    />
+
+                    <DButton
+                        @class="btn-primary"
+                        @label="preferences.modal.max_button"
+                        {{on "click" this.getMaxBalance}}
+                    />
+                </div>
+            </div>
+
+            
+            <div class="flex-break">
+                <label>
+                    {{ i18n "preferences.modal.address_label" }}:
+                </label>
+                
+                <Input
+                    @type="text"
+                    autocomplete="off"
+                    onchange={{ action "onInputChange" }}
+                />
+            </div>
+        </div>
+    </:body>
+    <:footer>
+        {{#if this.isPaymentLoading}}
+            <button class="btn-default btn btn-icon-text" type="button">
+                <div class="spinner small"></div>
+            </button>
+        {{else}}
+            <DButton
+                @action={{action "tipUser"}}
+                @icon="hand-holding-usd"
+                @class="btn-primary btn-icon-text"
+                @label="modal.send_button"
+            />
+        {{/if}}
+        
+        <DButton
+            @action={{action (route-action "closeModal")}}
+            @icon="times"
+            @class="btn-default btn-icon-text"
+            @label="modal.close_button"
+        />
+    </:footer>
+</DModal>

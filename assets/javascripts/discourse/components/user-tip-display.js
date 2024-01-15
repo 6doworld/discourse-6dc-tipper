@@ -1,70 +1,73 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
-
 import { action } from "@ember/object";
-import showModal from "discourse/lib/show-modal";
+import TipModalComponent from "../components/modal/tip-modal";
 
-export default Component.extend({
-    tagName: "",
-    dialog: service(),
-    shouldDisplay: true,
-    location: '',
-    buttonClass: 'btn-primary user-card-chat-btn btn-icon-text',
-    
-    init() {
-        this._super(...arguments);
-        this.show(this.getTargetUser());
-    },
+export default class extends Component {
+  @service dialog;
+  @service modal;
+  
+  tagName = "";
+  shouldDisplay = true;
+  location = '';
+  buttonClass = 'btn-primary user-card-chat-btn btn-icon-text';
+  
+  init() {
+    super.init(...arguments);
+    this.show(this.getTargetUser());
+  }
 
-    show(user) {
-        if (this.currentUser) {
-            if (
-                user.id === -1 || 
-                user.id === this.currentUser.id
-            ) this.set("shouldDisplay", false);
-        } else {
-            this.set("shouldDisplay", false);
-        }
-    },
+  show(user) {
+    if (this.currentUser) {
+      if (
+        user.id === -1 || 
+        user.id === this.currentUser.id
+      ) this.set("shouldDisplay", false);
+    } else {
+      this.set("shouldDisplay", false);
+    }
+  }
 
-    getTargetUser() {
-        let user;
+  getTargetUser() {
+    let user;
 
-        if (!!!this.currentUser) return {
-            id: -1,
-            username: "system"
-        }
+    if (!!!this.currentUser) return {
+      id: -1,
+      username: "system"
+    }
 
-        switch (this.location) {
-            case "profile-view":
-                user = {
-                    id: this.model.id,
-                    username: this.model.username
-                };
+    switch (this.location) {
+      case "profile-view":
+        user = {
+          id: this.model.id,
+          username: this.model.username
+        };
 
-                this.set("buttonClass", "btn-default");
-                break;
-            case "profile-popup":
-                user = {
-                    id: this.parentView.user.id,
-                    username: this.parentView.user.username
-                };
+        this.set("buttonClass", "btn-default");
+        break;
+      case "profile-popup":
+        user = {
+          id: this.parentView.user.id,
+          username: this.parentView.user.username
+        };
 
-                break;     
-            default:
-                user = {
-                    id: this.currentUser.id,
-                    username: this.currentUser.username
-                };
+        break;     
+      default:
+        user = {
+          id: this.currentUser.id,
+          username: this.currentUser.username
+        };
 
-                break; 
-        }
+        break; 
+    }
 
-        return user;
-    },
+    return user;
+  }
 
-    @action
-    toggleModal() {
-        showModal("tipModal").set("user", this.getTargetUser());
-    }, 
-});
+  @action
+  async toggleModal() {
+    this.modal.show(TipModalComponent, {
+      model: { user: this.getTargetUser() }
+    });
+  }
+}

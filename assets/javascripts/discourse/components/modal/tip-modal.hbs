@@ -1,0 +1,68 @@
+<DModal @class="tip-modal" @title={{ i18n "modal.title" }} @closeModal={{@closeModal}} class="tip-modal-modal">
+  <:body>
+    <div class="input-group">
+      <label style="whitespace: no-break;">
+        {{ html-safe (i18n "modal.description" user=this.user.username) }}
+      </label>
+
+      <hr>
+
+      <label>
+        {{ html-safe (i18n "modal.amount_sending" amount=(if this.isNotValidNumber '0' this.tipValue) currency=this.siteSettings.currency) }}
+      </label>
+      
+      <hr>
+
+      <div class="tip-options">        
+        {{#each this.sampleValues as |v|}}
+          <DButton
+              @action={{action "updatePaymentValue" v}}
+              @class="btn-primary"
+              @translatedLabel={{ concat v " " this.siteSettings.currency }}
+          />
+        {{/each}}
+
+        <DButton
+            @action={{action "toggleMoreOptions"}}
+            @class="btn-default"
+            @translatedLabel={{ if this.showMoreOptions (i18n "modal.hide_custom_amount") "..." }}
+        />
+      </div>
+
+      {{#if this.showMoreOptions}}
+        <br />
+        <label>
+          {{ i18n "modal.custom_amount" }}:
+        </label>
+
+        <Input
+          @type="text"
+          autocomplete="off"
+          oninput={{ action "onInputChange" }}
+        />
+
+      {{/if}}
+    </div>
+  </:body>
+  <:footer>
+    {{#if this.isPaymentLoading}}
+        <button class="btn-default btn btn-icon-text" type="button">
+          <div class="spinner small"></div>
+        </button>
+    {{else}}
+        <DButton
+          @action={{action "tipUser"}}
+          @icon="hand-holding-usd"
+          @class="btn-primary btn-icon-text"
+          @label="modal.send_button"
+        />
+    {{/if}}
+    
+    <DButton
+        @action={{action (route-action "closeModal")}}
+        @icon="times"
+        @class="btn-default btn-icon-text"
+        @label="modal.close_button"
+    />
+  </:footer>
+</DModal>
