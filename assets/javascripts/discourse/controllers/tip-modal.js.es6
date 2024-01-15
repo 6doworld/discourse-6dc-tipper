@@ -99,8 +99,7 @@ export default Controller.extend(ModalFunctionality, {
             return this.dialog.alert(detail);
         }
 
-        let { data: { target_has_wallet, user_has_wallet }  } = 
-        await ajax('/discourse-6dc-tipper/wallets', {
+        let { data: { target_has_wallet, user_has_wallet }  } = await ajax('/discourse-6dc-tipper/wallets', {
             data: { target_id: this.user.id }
         }).catch(e => { return throwAlert(e.message) });
         

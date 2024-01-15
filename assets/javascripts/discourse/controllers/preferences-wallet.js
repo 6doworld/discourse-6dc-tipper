@@ -48,7 +48,9 @@ export default class PreferencesWalletController extends Controller {
             name: this.siteSettings.currency,
             address: ''
           }
-        )
+        );
+
+        console.log("walletInfo:", walletInfo);
           
         this.set("walletTokenName", walletInfo.token);
         this.set("walletBalance", walletInfo.balance); 
