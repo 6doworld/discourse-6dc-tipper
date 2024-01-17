@@ -1,19 +1,16 @@
 <div class="preferences-wallet">
     {{#if this.userWallet}}
         <label class="control-label">
-            Wallet Details
+            {{ i18n "preferences.section.title" }}
         </label>
 
         <div class="control-group" data-setting-name="user_chat_enabled">
                 <div class="info-row">
-                    <p><b>Address:</b> {{ this.userWallet }}</p>
-                    <p><b>Balance:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
+                    <p><b>{{ i18n "preferences.section.address_title" }}:</b> {{ this.userWallet }}</p>
+                    <p><b>{{ i18n "preferences.section.balance_title" }}:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
                 </div>
 
                 <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ onTransferToggle }} />
-            {{!-- {{else}} --}}
-                {{!-- <p>This will be activated once you receive a transaction</p> --}}
-                {{!-- <DButton @class="btn-primary" @label="preferences.buttons.claim_wallet" @action={{action "generateWallet" }} /> --}}
         </div>
         
         <hr />
@@ -21,7 +18,7 @@
 
     <div class="transactions-history">
         <label class="control-label">
-            Transaction History ({{ this.walletTransactions.length }})
+            {{ i18n "preferences.section.transaction_history_title" }} ({{ this.walletTransactions.length }})
         </label>
 
 
@@ -30,9 +27,9 @@
                 <table>
                     <tr>
                         <th style="text-align: center">#</th>
-                        <th>Hash</th>
-                        <th style="text-align: center">Amount</th>
-                        <th>Date</th>
+                        <th>{{ i18n "preferences.section.table.headings.hash" }}</th>
+                        <th style="text-align: center">{{ i18n "preferences.section.table.headings.amount" }}</th>
+                        <th>{{ i18n "preferences.section.table.headings.date" }}</th>
                     </tr>
 
                     {{#each this.walletTransactions as |v i|}}
@@ -54,7 +51,7 @@
                     {{/each}}
                 </table>
             {{else}}
-                <span class="text-muted">No transactions available</span>
+                <span class="text-muted">{{ i18n "preferences.section.no_transactions" }}</span>
             {{/if}}
         </div>
     </div>
