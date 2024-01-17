@@ -41,7 +41,26 @@ en:
       send_button: Send
       close_button: Close
 
+    transfer_modal:
+      balance_title: Balance
+
+    connectors:
+      user_card_below_message_button: Wallet
+
     preferences:
+      section:
+        title: Wallet Details
+        address_title: Address
+        balance_title: Balance
+
+        transaction_history_title: Transaction History
+        table:
+          headings:
+            hash: Hash
+            amount: Amount
+            date: Date
+        
+        no_transactions: No transactions available
       modal:
         title: Transfer your funds
         description: You can transfer your funds to your own personal wallet
@@ -55,7 +74,7 @@ en:
       buttons:
         claim_wallet: Generate Wallet
         transfer_wallet: Transfer Funds
-
+      
     error:
       user_tip: You cannot tip yourself
       deny_access: You have denied authorization to your wallet, press 'OK' to redirect

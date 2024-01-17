@@ -52,6 +52,7 @@ const Web3Modal = EmberObject.extend({
             loadScript("/plugins/discourse-6dc-tipper/javascripts/ethers-5.5.4.umd.min.js"),
             loadScript("/plugins/discourse-6dc-tipper/javascripts/web3bundle.min.js"),
             loadScript("/plugins/discourse-6dc-tipper/javascripts/web3modal.min.js"),
+            // loadScript("/plugins/discourse-6dc-tipper/javascripts/ethers5/exports/index.js"),
             loadScript("/plugins/discourse-6dc-tipper/javascripts/erc-abi.js"),
             loadScript("/plugins/discourse-6dc-tipper/javascripts/confetti.js")
         ]);
