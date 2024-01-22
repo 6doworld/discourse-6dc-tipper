@@ -1,20 +1,35 @@
 <div class="preferences-wallet">
-    {{#if this.userWallet}}
-        <label class="control-label">
-            {{ i18n "preferences.section.title" }}
-        </label>
+    <label class="control-label">
+        {{ i18n "preferences.section.title" }}
+    </label>
 
-        <div class="control-group" data-setting-name="user_chat_enabled">
-                <div class="info-row">
-                    <p><b>{{ i18n "preferences.section.address_title" }}:</b> {{ this.userWallet }}</p>
-                    <p><b>{{ i18n "preferences.section.balance_title" }}:</b> {{ this.walletBalance }} {{ this.walletTokenName }}</p>
+    <hr />
+
+    <p><strong>{{ i18n "preferences.section.total_balance" }}:</strong> {{ this.totalBalance }} {{ this.walletTokenName }}</p>
+    
+    <ul class="wallet-list">
+        {{#if this.userWallet}}
+            <li>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span>
+                        <a href="#" class="tooltip">ⓘ<span class="tooltiptext">{{ this.walletAddress }}</span></a>
+                        <b>{{ i18n "preferences.section.unclaimed_balance_title" }}:</b> {{ this.walletBalance }} {{ this.walletTokenName }}
+                    </span>
+
+                    <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @disabled={{ true }} />
                 </div>
+            </li>
+        {{/if}}
 
-                <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ onTransferToggle }} />
-        </div>
-        
-        <hr />
-    {{/if}}
+        {{#if this.privateUserWallet}}
+            <li>
+                <a href="#" class="tooltip">ⓘ<span class="tooltiptext">{{ this.privateWalletAddress }}</span></a>
+                <b>{{ i18n "preferences.section.balance_title" }}:</b> {{ this.privateWalletBalance }} {{ this.walletTokenName }}
+            </li>
+        {{/if}}
+    </ul>
+
+    <hr />
 
     <div class="transactions-history">
         <label class="control-label">

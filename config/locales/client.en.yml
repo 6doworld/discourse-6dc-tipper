@@ -52,6 +52,8 @@ en:
         title: Wallet Details
         address_title: Address
         balance_title: Balance
+        total_balance: Total Balance
+        unclaimed_balance_title: Unclaimed Balance
 
         transaction_history_title: Transaction History
         table:
@@ -73,7 +75,7 @@ en:
         close_button: Close
       buttons:
         claim_wallet: Generate Wallet
-        transfer_wallet: Transfer Funds
+        transfer_wallet: Claim Funds
       
     error:
       user_tip: You cannot tip yourself
