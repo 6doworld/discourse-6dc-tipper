@@ -13,30 +13,38 @@ module Discourse6dcTipper
     end
 
     def fetch_wallet
+        user_wallets = []
+        current_user_has_account = false
+
+        if current_user.associated_accounts.length > 0
+            current_user.associated_accounts.each { |account| current_user_has_account = account[:description] if account[:name] == "siwe" }
+        end
+
+        if current_user_has_account
+            user_wallets.push({
+                address: current_user_has_account,
+                is_private: true
+            })
+        end
+
         # Look up the current user's wallet in the database
         wallet = Wallets.where(
             user_id: current_user[:id]
         )
         
         # If the user doesn't have a wallet yet...
-        if !wallet.exists?
-            render json: { 
-                status: false, 
-                message: "OK."
-            }
-        else
-            # Convert the ActiveRecord objects to an array of hashes
-            wallet_hash = wallet[0].as_json
-    
-            # Remove the privateKey attribute from each hash
-            wallet_hash.delete("privateKey")
-
-            render json: { 
-                status: true, 
-                message: "OK.",
-                data: wallet_hash
-            }
+        if wallet.exists?
+            user_wallets.push({
+                address: wallet[0].wallet,
+                is_private: false
+            })
         end
+            
+        render json: { 
+            status: true, 
+            message: "OK.",
+            data: user_wallets
+        }
     end
 
     def send_transaction

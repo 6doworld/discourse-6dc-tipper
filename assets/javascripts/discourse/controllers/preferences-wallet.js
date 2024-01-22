@@ -20,8 +20,15 @@ export default class PreferencesWalletController extends Controller {
     super(...arguments);
 
     this.set("walletTokenName", "...");  
-    this.set("walletAddress", "0x0000000000000000");  
-    this.set("walletBalance", "...");  
+    this.set("walletAddress", "0x0000000000000000"); 
+    
+    this.set("totalBalance", 0);
+    
+    this.set("walletBalance", "...");
+    
+    this.set("privateWalletAddress", "0x0000000000000000")
+    this.set("privateWalletBalance", "...");
+
     this.set("walletTransactions", []);
 
     this.fetchWalletData();
@@ -31,29 +38,36 @@ export default class PreferencesWalletController extends Controller {
   async fetchWalletData() {
     try {
       let { status, data } = await ajax('/discourse-6dc-tipper/fw');
-
+      
       if (status) {
-        this.set("walletAddress", data.wallet);
-  
         let provider = Web3Modal.create();
         await provider.providerInit({});
-          
-        const walletInfo = await provider.getBalanceForWallet(
-          this.siteSettings.network_rpc_url,
-          data.wallet,
-          this.siteSettings.erc_20_contract.length ? {
-            name: this.siteSettings.currency,
-            address: this.siteSettings.erc_20_contract,
-          } : {
-            name: this.siteSettings.currency,
-            address: ''
-          }
-        );
+        
+        data.forEach(async (wallet) => {
+          const walletInfo = await provider.getBalanceForWallet(
+            this.siteSettings.network_rpc_url,
+            wallet.address,
+            this.siteSettings.erc_20_contract.length ? {
+              name: this.siteSettings.currency,
+              address: this.siteSettings.erc_20_contract,
+            } : {
+              name: this.siteSettings.currency,
+              address: ''
+            }
+          );
 
-        console.log("walletInfo:", walletInfo);
+          if (wallet.is_private) {
+            this.set("privateWalletAddress", wallet.address);
+            this.set("privateWalletBalance", walletInfo.balance);
+          } else {
+            this.set("walletAddress", wallet.address);
+            this.set("walletBalance", walletInfo.balance);
+          }
           
-        this.set("walletTokenName", walletInfo.token);
-        this.set("walletBalance", walletInfo.balance); 
+          this.set("totalBalance", parseFloat(this.get("totalBalance"))+parseFloat(walletInfo.balance));
+          this.set("walletTokenName", walletInfo.token);
+          console.log(wallet.address, "walletInfo:", walletInfo);
+        });
       }
     } catch(err) {
       console.error(err)
@@ -89,6 +103,11 @@ export default class PreferencesWalletController extends Controller {
   @computed('walletAddress')
   get userWallet() {
     return this.walletAddress !== "0x0000000000000000" ? this.walletAddress : false
+  }
+
+  @computed('privateWalletAddress')
+  get privateUserWallet() {
+    return this.privateWalletAddress !== "0x0000000000000000" ? this.privateWalletAddress : false
   }
 
   @action
