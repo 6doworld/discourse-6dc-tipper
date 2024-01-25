@@ -106,6 +106,8 @@ const Web3Modal = EmberObject.extend({
     async getBalanceForWallet(rpcProvider, walletAddress, customToken = {}) {
         const provider = new ethers.providers.getDefaultProvider(rpcProvider);
         
+        console.log("customToken", customToken);
+
         if (customToken.address.length) {
             const contract = new ethers.Contract(customToken.address, erc_20_abi, provider);
             let adjustedBalance = 0.00;

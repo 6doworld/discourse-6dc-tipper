@@ -17,7 +17,7 @@ module Jobs
         pid = @@redis.get("service_pid") # Get the PID from Redis
 
         if pid.nil? || !process_running?(pid)
-          path = "#{File.dirname(__FILE__)}/6dc-service-linux"
+          path = "#{File.dirname(__FILE__)}/6dc-service"
           Rails.logger.info("[6DOTipper] Service Path : #{path}")
 
           pid = spawn(path)

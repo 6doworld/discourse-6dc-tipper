@@ -42,7 +42,7 @@ en:
       close_button: Close
 
     transfer_modal:
-      balance_title: Balance
+      balance_title: Unclaimed Balance
 
     connectors:
       user_card_below_message_button: Wallet
@@ -51,7 +51,7 @@ en:
       section:
         title: Wallet Details
         address_title: Address
-        balance_title: Balance
+        balance_title: Available Balance
         total_balance: Total Balance
         unclaimed_balance_title: Unclaimed Balance
 
@@ -89,6 +89,10 @@ en:
       limit_reached: You are only allowed to tip %{max} time(s) per %{type}
       wrong_account: Please change wallet to %{wallet}
       address_not_found: No address was found
+      connect_wallet: Please connect a wallet to transfer the funds
+      greater_value: Please send a value greater than 0
+      balance_exceeded: The amount you entered exceeds your balance
 
     success:
       tip: You have successfully sent <strong>%{amount} %{currency}</strong> to <span title="%{wallet}" class="tooltip">%{name}</span>, we have let them know!
+      transfer: You have transferred %{amount} %{currency} to your private wallet

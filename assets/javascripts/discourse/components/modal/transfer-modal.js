@@ -9,14 +9,14 @@ import Component from '@ember/component';
 export default class TransferModalComponent extends Component {
     @service dialog;
     @service modal;
-    
+
     init() {
         super.init(...arguments);
 
-        this.set("walletTokenName", "...");  
-        this.set("walletAddress", "0x0000000000000000");  
-        this.set("walletBalance", "...");  
-        this.set("recipientAddress", "0x0000000000000000");  
+        this.set("walletTokenName", "...");
+        this.set("walletAddress", "0x0000000000000000");
+        this.set("walletBalance", "...");
+        this.set("recipientAddress", "0x0000000000000000");
 
         this.fetchWalletData();
     }
@@ -28,11 +28,11 @@ export default class TransferModalComponent extends Component {
     willDestroy() {
         //
     }
-    
+
     @action
     onKeyPress(e) {
         const charCode = (e.which) ? e.which : e.keyCode;
-        
+
         if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46) {
             e.preventDefault();
         } else {
@@ -85,6 +85,11 @@ export default class TransferModalComponent extends Component {
             return this.dialog.alert(detail);
         }
 
+        // Handle negative tips in case of admin mistakes
+        if (parseFloat(this.get("tipValue")) <= 0) return throwAlert(I18n.t("error.greater_value"));
+        // Make sure the tip is less than or equal to the maxmium tip
+        if (parseFloat(this.get("tipValue")) > parseFloat(this.walletBalance)) return throwAlert(I18n.t("error.balance_exceeded"));
+
         const { status, data } = await ajax('/discourse-6dc-tipper/st', {
             type: "POST",
             data: {
@@ -92,9 +97,9 @@ export default class TransferModalComponent extends Component {
                 amount: this.get("tipValue")
             }
         }).catch(e => { return throwAlert(e.message) });
-        
+
         if (status) {
-            throwAlert(`You have sent ${this.get('tipValue')} ${this.get('walletTokenName')} to ${this.get('recipientAddress')}!`);
+            throwAlert(I18n.t("success.transfer", { amount: this.get('tipValue'), currency: this.get('walletTokenName') }));
             // this.set('tipValue', '0.00');
             await this.fetchWalletData();
             console.log(status, data);
@@ -107,30 +112,44 @@ export default class TransferModalComponent extends Component {
 
     async fetchWalletData() {
         try {
-          let { status, data } = await ajax('/discourse-6dc-tipper/fw');
-    
-          if (status) {
-            this.set("walletAddress", data.wallet);
-      
-            let provider = Web3Modal.create();
-            await provider.providerInit({});
-              
-            const walletInfo = await provider.getBalanceForWallet(
-              data.wallet,
-              this.siteSettings.erc_20_contract.length ? {
-                name: this.siteSettings.currency,
-                address: this.siteSettings.erc_20_contract,
-              } : {
-                name: this.siteSettings.currency,
-                address: ''
-              }
-            )
-              
-            this.set("walletTokenName", walletInfo.token);
-            this.set("walletBalance", walletInfo.balance); 
-          }
-        } catch(err) {
-          console.error(err)
+            let { status, data } = await ajax('/discourse-6dc-tipper/fw');
+
+            if (status) {
+                
+                let provider = Web3Modal.create();
+                await provider.providerInit({});
+                
+                let walletAddress = '';
+                data.forEach((wallet) => {
+                    if (wallet.is_private) {
+                        this.set("recipientAddress", wallet.address);
+                    } else {
+                        this.set("walletAddress", wallet.address);
+                    }
+                });
+
+                if (!this.recipientAddress.length) {
+                    this.closeModal();
+                    throwAlert(I18n.t("error.connect_wallet"));
+                }
+
+                const walletInfo = await await provider.getBalanceForWallet(
+                    this.siteSettings.network_rpc_url,
+                    this.get("walletAddress"),
+                    this.siteSettings.erc_20_contract.length ? {
+                      name: this.siteSettings.currency,
+                      address: this.siteSettings.erc_20_contract,
+                    } : {
+                      name: this.siteSettings.currency,
+                      address: ''
+                    }
+                );
+
+                this.set("walletTokenName", walletInfo.token);
+                this.set("walletBalance", walletInfo.balance);
+            }
+        } catch (err) {
+            console.error(err)
         }
     }
 }

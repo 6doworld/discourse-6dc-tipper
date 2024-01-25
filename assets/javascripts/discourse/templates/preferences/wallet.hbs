@@ -16,7 +16,7 @@
                         <b>{{ i18n "preferences.section.unclaimed_balance_title" }}:</b> {{ this.walletBalance }} {{ this.walletTokenName }}
                     </span>
 
-                    <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @disabled={{ true }} />
+                    <DButton @class="btn-primary" @label="preferences.buttons.transfer_wallet" @action={{ action "onTransferToggle" }} @disabled={{ if this.privateUserWallet false true }}/>
                 </div>
             </li>
         {{/if}}
