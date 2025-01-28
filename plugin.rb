@@ -27,7 +27,7 @@ gem 'mini_portile2', '2.8.0', require: false
 gem 'forwardable', '1.3.3', require: false
 gem 'rbsecp256k1', '6.0.0', require: false
 gem 'konstructor', '1.0.2', require: false
-gem 'ffi', '1.17.0', require: false
+gem 'ffi', '1.17.1', require: false
 gem 'ffi-compiler', '1.0.1', require: false
 gem 'scrypt', '3.0.7', require: false
 gem 'eth', '0.5.11', require: false
