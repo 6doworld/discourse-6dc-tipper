@@ -9,7 +9,8 @@ export default class TipPostMenuButton extends Component {
 
     init() {
         super.init(...arguments);
-        this.show(this.getTargetUser());
+        this.show(this.post.user);
+        console.log(this);
     }
 
     show(user) {
@@ -23,46 +24,15 @@ export default class TipPostMenuButton extends Component {
         }
     }
 
-    getTargetUser() {
-        let user;
-
-        if (!!!this.currentUser) return {
-            id: -1,
-            username: "system"
-        }
-
-        switch (this.location) {
-            case "profile-view":
-                user = {
-                    id: this.model.id,
-                    username: this.model.username
-                };
-
-                this.set("buttonClass", "btn-default");
-                break;
-            case "profile-popup":
-                user = {
-                    id: this.parentView.user.id,
-                    username: this.parentView.user.username
-                };
-
-                break;
-            default:
-                user = {
-                    id: this.currentUser.id,
-                    username: this.currentUser.username
-                };
-
-                break;
-        }
-
-        return user;
-    }
-
     @action
     async toggleModal() {
         this.modal.show(TipModalComponent, {
-            model: { user: this.getTargetUser() }
+            model: { 
+                user: {
+                    id: this.post.user.id,
+                    username: this.post.user.name
+                }
+            }
         });
     }
 }
