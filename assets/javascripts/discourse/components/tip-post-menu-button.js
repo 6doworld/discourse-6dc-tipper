@@ -9,8 +9,7 @@ export default class TipPostMenuButton extends Component {
 
     init() {
         super.init(...arguments);
-        this.show(this.post.user);
-        console.log(this);
+        this.show(this.attrs.post.user);
     }
 
     show(user) {
@@ -29,8 +28,8 @@ export default class TipPostMenuButton extends Component {
         this.modal.show(TipModalComponent, {
             model: { 
                 user: {
-                    id: this.post.user.id,
-                    username: this.post.user.name
+                    id: this.attrs.post.user.id,
+                    username: this.attrs.post.user.name
                 }
             }
         });
