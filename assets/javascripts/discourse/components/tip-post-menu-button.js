@@ -9,7 +9,9 @@ export default class TipPostMenuButton extends Component {
 
     init() {
         super.init(...arguments);
-        this.show(this.attrs.post.user);
+        this.show(this.post);
+        console.log(this.attrs);
+        console.log(this.attrs.post);
     }
 
     show(user) {
